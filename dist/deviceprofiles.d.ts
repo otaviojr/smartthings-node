@@ -1,4 +1,3 @@
-/// <reference types="request-promise" />
 import * as rp from 'request-promise';
 export declare class DeviceComponent {
     id: string;

@@ -41,7 +41,6 @@ class Devices {
         let authToken = this.getAuthToken(smartAppToken);
         return requestbuilder_1.default(authToken, `devices/${deviceId}/commands`, 'POST', commands);
     }
-    //TODO:: Not working. Figure out how device events work
     createDeviceEvents(deviceId, deviceEvents, smartAppToken) {
         let authToken = this.getAuthToken(smartAppToken);
         return requestbuilder_1.default(authToken, `devices/${deviceId}/events`, 'POST', deviceEvents);

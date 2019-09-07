@@ -5,7 +5,7 @@ class Apps {
     constructor(personalAccessToken) {
         this.personalAccessToken = personalAccessToken;
     }
-    createWebHookApp(appName, displayName, description, targetUrl, singleInstance, smartAppToken) {
+    createWebHookApp(appName, displayName, description, targetUrl, classification, singleInstance, smartAppToken) {
         let authToken = this.getAuthToken(smartAppToken);
         let body = {
             appName: appName,
@@ -13,13 +13,14 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'WEBHOOK_SMART_APP',
+            capabilities: (classification != null ? classification : "AUTOMATION"),
             webhookSmartApp: {
                 targetUrl: targetUrl
             }
         };
         return requestbuilder_1.default(authToken, 'apps', 'POST', body);
     }
-    createLambdaApp(appName, displayName, description, functions, singleInstance, smartAppToken) {
+    createLambdaApp(appName, displayName, description, functions, classification, singleInstance, smartAppToken) {
         let authToken = this.getAuthToken(smartAppToken);
         let body = {
             appName: appName,
@@ -27,6 +28,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'LAMBDA_SMART_APP',
+            capabilities: (classification != null ? classification : "AUTOMATION"),
             lambdaSmartApp: {
                 functions: functions
             }

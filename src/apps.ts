@@ -8,8 +8,8 @@ export default class Apps {
     this.personalAccessToken = personalAccessToken;
   }
 
-  createWebHookApp(appName: string,  displayName: string, description: string, 
-                   targetUrl: string, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
+  createWebHookApp(appName: string,  displayName: string, description: string,
+                   targetUrl: string, classification?: String, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     let body = {
       appName: appName,
@@ -17,15 +17,16 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'WEBHOOK_SMART_APP',
+      capabilities: ( classification != null ? classification : "AUTOMATION"),
       webhookSmartApp: {
         targetUrl: targetUrl
-      }      
+      }
     };
     return buildRequest(authToken, 'apps', 'POST', body);
   }
 
-  createLambdaApp(appName: string,  displayName: string, description: string, 
-                  functions: Array<String>, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
+  createLambdaApp(appName: string,  displayName: string, description: string,
+                  functions: Array<String>, classification?: String, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
       let authToken = this.getAuthToken(smartAppToken);
       let body = {
       appName: appName,
@@ -33,6 +34,7 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'LAMBDA_SMART_APP',
+      capabilities: ( classification != null ? classification : "AUTOMATION"),
       lambdaSmartApp: {
         functions: functions
       }
@@ -53,7 +55,7 @@ export default class Apps {
     return buildRequest(this.personalAccessToken, `apps/${appNameOrId}`, 'GET');
   }
 
-  updateWebHookApp(appNameOrId: string, appName: string,  displayName: string, description: string, 
+  updateWebHookApp(appNameOrId: string, appName: string,  displayName: string, description: string,
                    targetUrl: string, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     let body = {
@@ -69,7 +71,7 @@ export default class Apps {
     return buildRequest(authToken, `apps/${appNameOrId}`, 'PUT', body);
   }
 
-  updateLambdaApp(appNameOrId: string, appName: string, displayName: string, description: string, 
+  updateLambdaApp(appNameOrId: string, appName: string, displayName: string, description: string,
                   functions: Array<String>, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     let body = {
@@ -110,7 +112,7 @@ export default class Apps {
     return buildRequest(authToken, `apps/${appNameOrId}/oauth`, 'PUT', body);
   }
 
-  generateAppOAuthClientSecret(appNameOrId: string, body: {client: string, scope: string}, 
+  generateAppOAuthClientSecret(appNameOrId: string, body: {client: string, scope: string},
                                smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     return buildRequest(authToken, `apps/${appNameOrId}/oauth/generate`, 'POST', body);
