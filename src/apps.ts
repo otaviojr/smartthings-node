@@ -17,7 +17,7 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'WEBHOOK_SMART_APP',
-      capabilities: ( classification != null ? classification : "AUTOMATION"),
+      classifications: ( classification != null ? classification : "AUTOMATION"),
       webhookSmartApp: {
         targetUrl: targetUrl
       }
@@ -34,7 +34,7 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'LAMBDA_SMART_APP',
-      capabilities: ( classification != null ? classification : "AUTOMATION"),
+      classifications: ( classification != null ? classification : "AUTOMATION"),
       lambdaSmartApp: {
         functions: functions
       }
@@ -56,7 +56,7 @@ export default class Apps {
   }
 
   updateWebHookApp(appNameOrId: string, appName: string,  displayName: string, description: string,
-                   targetUrl: string, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
+                   targetUrl: string, classification?: String, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     let body = {
       appName: appName,
@@ -64,6 +64,7 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'WEBHOOK_SMART_APP',
+      classifications: ( classification != null ? classification : "AUTOMATION"),
       webhookSmartApp: {
         targetUrl: targetUrl
       }
@@ -72,7 +73,7 @@ export default class Apps {
   }
 
   updateLambdaApp(appNameOrId: string, appName: string, displayName: string, description: string,
-                  functions: Array<String>, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
+                  functions: Array<String>, classification?: String, singleInstance?: boolean, smartAppToken?: string) : rp.RequestPromise {
     let authToken = this.getAuthToken(smartAppToken);
     let body = {
       appName: appName,
@@ -80,6 +81,7 @@ export default class Apps {
       description: description,
       singleInstance: singleInstance,
       appType: 'LAMBDA_SMART_APP',
+      classifications: ( classification != null ? classification : "AUTOMATION"),
       lambdaSmartApp: {
         functions: functions
       }

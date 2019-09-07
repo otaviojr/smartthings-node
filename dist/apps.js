@@ -13,7 +13,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'WEBHOOK_SMART_APP',
-            capabilities: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : "AUTOMATION"),
             webhookSmartApp: {
                 targetUrl: targetUrl
             }
@@ -28,7 +28,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'LAMBDA_SMART_APP',
-            capabilities: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : "AUTOMATION"),
             lambdaSmartApp: {
                 functions: functions
             }
@@ -46,7 +46,7 @@ class Apps {
     getAppDetails(appNameOrId) {
         return requestbuilder_1.default(this.personalAccessToken, `apps/${appNameOrId}`, 'GET');
     }
-    updateWebHookApp(appNameOrId, appName, displayName, description, targetUrl, singleInstance, smartAppToken) {
+    updateWebHookApp(appNameOrId, appName, displayName, description, targetUrl, classification, singleInstance, smartAppToken) {
         let authToken = this.getAuthToken(smartAppToken);
         let body = {
             appName: appName,
@@ -54,13 +54,14 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'WEBHOOK_SMART_APP',
+            classifications: (classification != null ? classification : "AUTOMATION"),
             webhookSmartApp: {
                 targetUrl: targetUrl
             }
         };
         return requestbuilder_1.default(authToken, `apps/${appNameOrId}`, 'PUT', body);
     }
-    updateLambdaApp(appNameOrId, appName, displayName, description, functions, singleInstance, smartAppToken) {
+    updateLambdaApp(appNameOrId, appName, displayName, description, functions, classification, singleInstance, smartAppToken) {
         let authToken = this.getAuthToken(smartAppToken);
         let body = {
             appName: appName,
@@ -68,6 +69,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'LAMBDA_SMART_APP',
+            classifications: (classification != null ? classification : "AUTOMATION"),
             lambdaSmartApp: {
                 functions: functions
             }

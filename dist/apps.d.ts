@@ -6,8 +6,8 @@ export default class Apps {
     createLambdaApp(appName: string, displayName: string, description: string, functions: Array<String>, classification?: String, singleInstance?: boolean, smartAppToken?: string): rp.RequestPromise;
     listApps(appType?: string, smartAppToken?: string): rp.RequestPromise;
     getAppDetails(appNameOrId: string): rp.RequestPromise;
-    updateWebHookApp(appNameOrId: string, appName: string, displayName: string, description: string, targetUrl: string, singleInstance?: boolean, smartAppToken?: string): rp.RequestPromise;
-    updateLambdaApp(appNameOrId: string, appName: string, displayName: string, description: string, functions: Array<String>, singleInstance?: boolean, smartAppToken?: string): rp.RequestPromise;
+    updateWebHookApp(appNameOrId: string, appName: string, displayName: string, description: string, targetUrl: string, classification?: String, singleInstance?: boolean, smartAppToken?: string): rp.RequestPromise;
+    updateLambdaApp(appNameOrId: string, appName: string, displayName: string, description: string, functions: Array<String>, classification?: String, singleInstance?: boolean, smartAppToken?: string): rp.RequestPromise;
     deleteApp(appNameOrId: string, smartAppToken?: string): rp.RequestPromise;
     getAppSettings(appNameOrId: string): rp.RequestPromise;
     updateAppSettings(appNameOrId: string, settings: {}, smartAppToken?: string): rp.RequestPromise;
