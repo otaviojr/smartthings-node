@@ -13,7 +13,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'WEBHOOK_SMART_APP',
-            classifications: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : ["AUTOMATION"]),
             webhookSmartApp: {
                 targetUrl: targetUrl
             }
@@ -28,7 +28,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'LAMBDA_SMART_APP',
-            classifications: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : ["AUTOMATION"]),
             lambdaSmartApp: {
                 functions: functions
             }
@@ -54,7 +54,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'WEBHOOK_SMART_APP',
-            classifications: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : ["AUTOMATION"]),
             webhookSmartApp: {
                 targetUrl: targetUrl
             }
@@ -69,7 +69,7 @@ class Apps {
             description: description,
             singleInstance: singleInstance,
             appType: 'LAMBDA_SMART_APP',
-            classifications: (classification != null ? classification : "AUTOMATION"),
+            classifications: (classification != null ? classification : ["AUTOMATION"]),
             lambdaSmartApp: {
                 functions: functions
             }
